@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sellik home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container flex header-container">
+            <img class="logo" src="static/Sellik.svg" alt="logo">
+            <div class="header-nav-container">
+                <nav class="header-nav">
+                    <ul class="list-reset header-list flex">
+                        <li class="header-list-item">
+                            <a href="/" class="header-link">
+                                Home
+                            </a>
+                        </li>
+                        <li class="header-list-item">
+                            <a href="#" class="header-link">
+                                About
+                            </a>
+                        </li>
+                        <li class="header-list-item header-list-item-right">
+                            <a href="/options" class="header-link header-link-right">
+                                Listings
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {% if user.is_authenticated %}
+                    <button type="button" value="register-button" name="register-button" class="button-reset button sign-up-button" disabled>
+                        Sign up
+                    </button>
+                    <button type="button" value="login-button" name="login-button" class="button-reset log-in-button" disabled>
+                        Log in
+                    </button>
+                <!-- </a> -->
+                <style>
+                    .sign-up-button:disabled {
+                        visibility: hidden;
+                        cursor: default;
+                    }
+                    .log-in-button:disabled {
+                        visibility: hidden;
+                        cursor: default;
+                    }
+                </style>
+            {% else %}
+                <a href="/register">
+                    <button type="button" value="register-button" name="register-button" class="button-reset button sign-up-button">
+                        Sign up
+                    </button>
+                </a>
+                <a href="/login">
+                    <button type="button" value="login-button" name="login-button" class="button-reset log-in-button">
+                        Log in
+                    </button>
+                </a>
+            {% endif %}
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-slogans-container flex">
+            <div class="slogans-container">
+                <div class="first-slogan-wrapper">
+                    <div class="first-slogan-container">
+                        Sell your &#128690
+                    </div>
+                    <div class="use-sellik">
+                        use Sell <p class="ik">ik.</p>
+                    </div>
+                </div>
+                <div class="second-clogan-container">
+                    Rent out your &#128218
+                </div>
+            </div>
+        </div>
+        <div class="third-slogan-wrapper">
+            <div class="share-with-others">
+                <p class="share">share</p> with others
+            </div>
+            <div class="third-slogan-container">
+                Donate your &#128086
+            </div>
+        </div>
+        <div class="how-it-works-container flex">
+            <div class="how-it-works-inner-container">
+                <div class="how-it-works-wrapper">
+                    <p class="how-it-works">How it works</p>
+                    <p class="question">?</p>
+                </div>
+                <div class="browse-contact-wrapper">
+                    <div class="browse-contact">
+                        <h3 class="browse-contact-header">Browse & Contact</h3>
+                        <p class="browse-contact-text">
+                            Browse listings, select an item, and contact the owner via WhatsApp/Telegram.
+                        </p>
+                    </div>
+                    <img class="browse-contact-pic1" src="static/Group 3.svg" alt="picture">
+                    <img src="static/Group 4.svg" alt="picture">
+                </div>
+                <div class="arrange-confirm-container flex">
+                    <div class="arrange-confirm-inner-container">
+                        <div class="arrange-confirm-wrapper">
+                            <div class="arrange-confirm">
+                                <h3 class="arrange-confirm-header">Arrange & Confirm</h3>
+                                <p class="arrange-confirm-text">
+                                    Arrange pick-up details and confirm your request with the owner.
+                                </p>
+                            </div>
+                            <img class="arrange-confirm-svg" src="static/Group 5.svg" alt="picture">
+                        </div>
+                        <a href="/options">
+                            <button type="button" class="button-reset try-it-out button">
+                                Try it out
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <form method="POST">
+            {% csrf_token %}
+            <button type="submit" value="create-option-button" name="create-option-button" class="button-reset button">
+                Start sharing
+            </button><br><br>
+        </form> -->
+    </main>
+</body>
+</html>

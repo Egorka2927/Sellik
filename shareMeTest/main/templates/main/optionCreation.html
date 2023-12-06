@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing creation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+<body class="listing-creation-body">
+    <h1 class="listing-creation-header">
+        Listing creation
+    </h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">
+            Upload photo
+            <input type="file" name="file" value="added">
+        </label><br><br>
+        <label for="category">
+            Choose category
+            <select name="category" id="category">
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <option value="books">Books</option>
+                <option value="clothing">Clothing</option>
+                <option value="vehicles">Vehicles</option>
+                <option value="appliences">Home appliences</option>
+                <option value="sports">Sports & Outdoor Equipment</option>
+                <option value="jewelry">Jewelry & Accessories</option>
+                <option value="toys">Toys & Children's Items</option>
+                <option value="collectibles">Collectibles & Art</option>
+                <option value="others">Others</option>
+            </select>
+        </label><br><br>
+        <label for="description">
+            Write description
+            <input type="text" name="description">
+        </label><br><br>
+        <label for="listingType">
+            Choose listing type
+            <select name="listingType" id="listingType">
+                <option value="buy">Selling</option>
+                <option value="rent">Renting</option>
+                <option value="donations">Donating</option>
+            </select>
+        </label><br><br>
+        <label for="dateAvailable">
+            Specify available date
+            <input type="date" name="dateAvailable" id="dataAvailable">
+        </label><br><br>
+        <label for="price">
+            Set a price
+            <input type="number" name="price" min="0">
+        </label><br><br>
+        <label for="phoneNumber">
+            Enter your phone number
+            <input type="tel" name="phoneNumber" id="phoneNumber">
+        </label><br><br>
+        <!-- <label for="email">
+            Email
+            <input type="email" name="email">
+        </label><br><br> -->
+        <label for="">
+            Other contacts
+            <input type="text" name="contacts" id="contacts">
+        </label><br><br>
+        <button type="submit" name="create-button" value="create-button" class="button-reset button">
+            Create
+        </button>
+    </form>
+</body>
+</html>

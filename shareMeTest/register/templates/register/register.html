@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="sign-up-main-container">
+            <div class="sign-up-inner-container">
+                <p class="register-header">Sell<span class="ik">ik</span></p>
+                <div class="sign-up-form-container">
+                    {% for field in form %}
+                        <div class="form-field-container">
+                            <p class="form-field">
+                                {% if field.label == " Password" %}
+                                    <span class="form-field-label">
+                                        Confirm<span class="form-field-label-tag">{{ field.label_tag }}</span>
+                                    </span>
+                                {% else %}
+                                    <span class="form-field-label">
+                                        Your <span class="form-field-label-tag">{{ field.label_tag }}</span>
+                                    </span>
+                                {% endif %}
+                            </p>
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <p class="register-error-message">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+                            {% endif %}
+                            {{field}}
+                        </div>
+                    {% endfor %}
+                    <br>
+                </div>
+                <button type="submit" name="register-button" value="register-button" class="button-reset button register-button">
+                    Sign up
+                </button>
+                <p class="auth-redirect">Already have an account? <a href="/login" class="account-ref">Log in</a></p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+<body class="option-list-body">
+    <header class="option-header">
+        <div class="container flex header-container">
+            <svg class="logo" width="81" height="27" viewbox="0 0 81 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.89 5.35L11.775 7.415C10.83 5.63 9.605 4.72 8.135 4.72C6.595 4.72 5.58 5.875 5.58 7.38C5.58 9.165 7.225 10.39 9.29 11.37C12.23 12.665 16.115 14.415 16.08 18.825C16.08 21.03 15.345 22.85 13.91 24.215C12.475 25.58 10.655 26.28 8.415 26.28C4.215 26.28 1.205 23.515 0.33 19.455L3.48 17.46C4.355 20.925 6 22.64 8.415 22.64C10.62 22.64 12.16 21.1 12.16 18.965C12.16 14.17 1.73 15.22 1.73 7.66C1.73 5.805 2.36 4.3 3.585 3.075C4.81 1.85 6.35 1.22 8.135 1.22C11.11 1.22 13.35 2.585 14.89 5.35ZM27.773 11.3C25.428 11.3 23.888 12.875 23.468 15.15H32.043C31.728 12.945 30.258 11.3 27.773 11.3ZM35.893 16.62V18.195H23.398C23.398 20.96 25.008 23.06 27.773 23.06C29.733 23.06 31.518 21.94 32.393 20.085L35.508 21.31C33.723 24.775 31.658 26.28 27.773 26.28C21.963 26.28 19.548 21.38 19.548 17.18C19.548 12.98 21.963 8.08 27.773 8.08C33.408 8.08 35.893 12.665 35.893 16.62ZM39.8453 26V1.22H43.4853V26H39.8453ZM48.2535 26V1.22H51.8935V26H48.2535Z" fill="#0A0937"/>
+                <path d="M57.6504 5.175C56.7054 4.195 56.7054 2.585 57.6854 1.605C58.6654 0.59 60.2754 0.59 61.2554 1.605C62.2354 2.585 62.2354 4.195 61.2554 5.175C60.3104 6.12 58.6304 6.12 57.6504 5.175ZM57.6504 26V8.36H61.2904V26H57.6504ZM65.3108 26V1.22H68.9508V15.395L75.3208 8.36H79.9408L72.5558 16.48L80.3958 26H75.7758L68.9508 17.565V26H65.3108Z" fill="#782FEF"/>
+                </svg>
+            <!-- <img class="logo" src="static/Sellik.svg" alt="logo"> -->
+            <div class="header-nav-container">
+                <nav class="header-nav">
+                    <ul class="list-reset header-list flex">
+                        <li class="header-list-item">
+                            <a href="/" class="header-link">
+                                Home
+                            </a>
+                        </li>
+                        <li class="header-list-item">
+                            <a href="#" class="header-link">
+                                About
+                            </a>
+                        </li>
+                        <li class="header-list-item header-list-item-right">
+                            <a href="/options" class="header-link header-link-right">
+                                Listings
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {% if user.is_authenticated %}
+                <a href="/optionCreation" class="create-listing-ref">
+                    <button type="button" value="create-option-button" name="create-option-button" class="button-reset button create-listing-button">
+                        Create listing
+                    </button>
+                </a>
+                <style>
+                    .logo {
+                        padding-right: 116px;
+                    }
+                </style>
+                <a href="#" class="profile-ref">
+                    <button type="button" value="profile-button" name="profile-button" class="button-reset profile-button">
+                        <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="24" fill="#F2F2F2"/>
+                            <path d="M32 33V31C32 29.9391 31.5786 28.9217 30.8284 28.1716C30.0783 27.4214 29.0609 27 28 27H20C18.9391 27 17.9217 27.4214 17.1716 28.1716C16.4214 28.9217 16 29.9391 16 31V33" stroke="#0A0937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M24 23C26.2091 23 28 21.2091 28 19C28 16.7909 26.2091 15 24 15C21.7909 15 20 16.7909 20 19C20 21.2091 21.7909 23 24 23Z" stroke="#0A0937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                        
+                    </button>
+                </a>
+            {% else %}
+                <a href="/register">
+                    <button type="button" value="register-button" name="register-button" class="button-reset button sign-up-button">
+                        Sign up
+                    </button>
+                </a>
+                <a href="/login">
+                    <button type="button" value="login-button" name="login-button" class="button-reset log-in-button">
+                        Log in
+                    </button>
+                </a>
+            {% endif %}
+        </div>
+    </header>
+    <div class="sell-rent-donate-wrapper">
+        <div class="sell-rent-donate">
+            <p>
+                Buy<span class="dot">.</span> Rent<span class="dot">.</span> Donate<span class="dot">.</span>
+            </p>
+        </div>
+    </div>
+    <div class="option-block flex">
+        <div class="filtering-container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="type-of-listing">
+                    <h4 class="type-of-listing-header">Type of listing</h4>
+                    <div class="checkbox-container">
+                        {% if "Selling" in listingTypeList %}
+                            <input type="checkbox" name="buy" value="buy" class="buy checkbox" checked>
+                            <label for="buy" class="checkbox-label">
+                                Buy
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="buy" value="buy" class="buy checkbox">
+                            <label for="buy" class="checkbox-label">
+                                Buy
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "Renting" in listingTypeList %}
+                            <input type="checkbox" name="rent" value="rent" class="rent checkbox" checked>
+                            <label for="rent" class="checkbox-label">
+                                Rent
+                            </label><br>
+                        {% else %}
+                            <input type="checkbox" name="rent" value="rent" class="rent checkbox">
+                            <label for="rent" class="checkbox-label">
+                                Rent
+                            </label><br>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "Donating" in listingTypeList %}
+                            <input type="checkbox" name="donations" value="donations" class="donations checkbox" checked>
+                            <label for="donations" class="checkbox-label">
+                                Donations
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="donations" value="donations" class="donations checkbox">
+                            <label for="donations" class="checkbox-label">
+                                Donations
+                            </label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="category">
+                    <h4 class="category-header">Category</h4>
+                    <div class="checkbox-container">
+                        {% if "electronics" in categoryList %}
+                            <input type="checkbox" name="electronics" value="electronics" class="electronics checkbox" checked>
+                            <label for="electronics" class="checkbox-label">
+                                Electronics
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="electronics" value="electronics" class="electronics checkbox">
+                            <label for="electronics" class="checkbox-label">
+                                Electronics
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "furniture" in categoryList %}
+                            <input type="checkbox" name="furniture" value="furniture" class="furniture checkbox" checked>
+                            <label for="furniture" class="checkbox-label">
+                                Furniture
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="furniture" value="furniture" class="furniture checkbox">
+                            <label for="furniture" class="checkbox-label">
+                                Furniture
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "books" in categoryList %}
+                            <input type="checkbox" name="books" value="books" class="books checkbox" checked>
+                            <label for="books" class="checkbox-label">
+                                Books
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="books" value="books" class="books checkbox">
+                            <label for="books" class="checkbox-label">
+                                Books
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "clothing" in categoryList %}
+                            <input type="checkbox" name="clothing" value="clothing" class="clothing checkbox" checked>
+                            <label for="clothing" class="checkbox-label">
+                                Clothing
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="clothing" value="clothing" class="clothing checkbox">
+                            <label for="clothing" class="checkbox-label">
+                                Clothing
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "vehicles" in categoryList %}
+                            <input type="checkbox" name="vehicles" value="vehicles" class="vehicles checkbox" checked>
+                            <label for="vehicles" class="checkbox-label">
+                                Vehicles
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="vehicles" value="vehicles" class="vehicles checkbox">
+                            <label for="vehicles" class="checkbox-label">
+                                Vehicles
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "appliences" in categoryList %}
+                            <input type="checkbox" name="appliences" value="appliences" class="appliences checkbox" checked>
+                            <label for="appliences" class="checkbox-label">
+                                Home appliences
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="appliences" value="appliences" class="appliences checkbox">
+                            <label for="appliences" class="checkbox-label">
+                                Home appliences
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "jewelry" in categoryList %}
+                            <input type="checkbox" name="jewelry" value="jewelry" class="jewelry checkbox" checked>
+                            <label for="jewelry" class="checkbox-label">
+                                Jewelry & Accessories
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="jewelry" value="jewelry" class="jewelry checkbox">
+                            <label for="jewelry" class="checkbox-label">
+                                Jewelry & Accessories
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "sports" in categoryList %}
+                            <input type="checkbox" name="sports" value="sports" class="sports checkbox" checked>
+                            <label for="sports" class="checkbox-label">
+                                Sports & Outdoor Equipment
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="sports" value="sports" class="sports checkbox">
+                            <label for="sports" class="checkbox-label">
+                                Sports & Outdoor Equipment
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "toys" in categoryList %}
+                            <input type="checkbox" name="toys" value="toys" class="toys checkbox" checked>
+                            <label for="toys" class="checkbox-label">
+                                Toys & Children's Items
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="toys" value="toys" class="toys checkbox">
+                            <label for="toys" class="checkbox-label">
+                                Toys & Children's Items
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "collectibles" in categoryList %}
+                            <input type="checkbox" name="collectibles" value="collectibles" class="collectibles checkbox" checked>
+                            <label for="collectibles" class="checkbox-label">
+                                Collectibles & Art
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="collectibles" value="collectibles" class="collectibles checkbox">
+                            <label for="collectibles" class="checkbox-label">
+                                Collectibles & Art
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "others" in categoryList %}
+                            <input type="checkbox" name="others" value="others" class="others checkbox" checked>
+                            <label for="others" class="checkbox-label">
+                                Others
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="others" value="others" class="others checkbox">
+                            <label for="others" class="checkbox-label">
+                                Others
+                            </label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="price-range">
+                    <h4 class="price-range-header">Price range</h4>
+                    <label class="price-label" for="price-from">From</label>
+                    {% if priceFrom == 0 %}
+                        <input type="number" name="price-from" value="price-from" class="price-from input-number" min="0">
+                    {% else %}
+                        <input type="number" name="price-from" value="{{priceFrom}}" class="price-from input-number" min="0">
+                    {% endif %}
+                    <label class="price-label" for="price-to">To</label>
+                    {% if priceTo == 2147483647 %}
+                        <input type="number" name="price-to" value="price-to" class="price-to input-number" min="0" max="2147483647">
+                    {% else %}
+                        <input type="number" name="price-to" value="{{priceTo}}" class="price-to input-number" min="0" max="2147483647">
+                    {% endif %}
+                </div>
+                <div class="date-posted">
+                    <h4 class="date-posted-header">Date posted</h4>
+                    <div class="checkbox-container">
+                        {% if "today" in dateList %}
+                            <input type="checkbox" name="today" value="today" class="today checkbox" checked>
+                            <label for="today" class="checkbox-label">
+                                Today
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="today" value="today" class="today checkbox">
+                            <label for="today" class="checkbox-label">
+                                Today
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "last-week" in dateList %}
+                            <input type="checkbox" name="last-week" value="last-week" class="last-week checkbox" checked>
+                            <label for="last-week" class="checkbox-label">
+                                Last 7 days
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="last-week" value="last-week" class="last-week checkbox">
+                            <label for="last-week" class="checkbox-label">
+                                Last 7 days
+                            </label>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-container">
+                        {% if "last-month" in dateList %}
+                            <input type="checkbox" name="last-month" value="last-month" class="last-month checkbox" checked>
+                            <label for="last-month" class="checkbox-label">
+                                Last 30 days
+                            </label>
+                        {% else %}
+                            <input type="checkbox" name="last-month" value="last-month" class="last-month checkbox">
+                            <label for="last-month" class="checkbox-label">
+                                Last 30 days
+                            </label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="filter-buttons-container">
+                    <button type="submit" name="filter-apply-button" value="filter-apply-button" class="button button-reset filter-apply-button">
+                        Apply
+                    </button>
+                    <button type="submit" name="filter-reset-button" value="filter-reset-button" class="button-reset filter-reset-button">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="list-container">
+            <ul class="list-reset flex listing">
+                {% for listing in listingList %}
+                    <li class="list-element">
+                        <div class="list-element-wrapper">
+                            <div class="photo-container">
+                                <img src="{{listing.photo.url}}" alt="Фото Анкеты" width="288" height="207" class="option-photo">
+                            </div>
+                            <div class="description-container">
+                                <div class="upper-description flex">
+                                    <p class="listing-description p-reset">
+                                        {{listing.description}}
+                                    </p>
+                                    <p class="price p-reset">
+                                        {{listing.price}}€
+                                    </p>
+                                </div>
+                                <div class="lower-description flex">
+                                    <p class="username">
+                                        {{listing.username}}
+                                    </p>
+                                    <p class="listing-type">
+                                        {{listing.listingType}}
+                                    </p>
+                                    <p class="listing-date">
+                                        {{listing.dateAvailable}}
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- <p class="option-text">{{option.category}}</p>
+                            <p class="option-text">{{option.description}}</p>
+                            <p class="option-text">{{option.email}}</p> -->
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

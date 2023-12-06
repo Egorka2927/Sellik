@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="login-main-container">
+            <div class="login-inner-container">
+                <p class="login-header">Sell<span class="ik">ik</span></p>
+                <div class="login-form-container">
+                    {% for field in form %}
+                        <div class="login-form-field-container">
+                            <p class="form-field">
+                                <span class="form-field-label">
+                                    Your <span class="form-field-label-tag">{{ field.label_tag }}</span>
+                                </span>
+                            </p>
+                            {{field}}
+                        </div>
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <p class="login-error-message">Invalid login please try again.</p>
+                    {% endif %}
+                </div>
+                <button type="submit" name="login-button" value="login-button" class="button-reset button login-button">
+                    Login
+                </button>
+                <p class="auth-redirect">No account? Create one <a href="/register" class="account-ref">here</a></p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
